@@ -4,19 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="db61d434-46a4-4f05-a5e7-fe2d6677ff13" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/slark_chto_zval.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Anton_che_zval_slark/accounts/forms.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Anton_che_zval_slark/accounts/templates/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Anton_che_zval_slark/accounts/templates/registration/login.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Anton_che_zval_slark/accounts/templates/registration/registration.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Anton_che_zval_slark/accounts/urls.py" afterDir="false" />
-    </list>
+    <list default="true" id="db61d434-46a4-4f05-a5e7-fe2d6677ff13" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
