@@ -4,7 +4,13 @@ from django.contrib.auth.views import LoginView
 # Create your views here.
 
 def index(request):
-    return render(request, 'index.html')
+    greeting = ''
+    if request.user.is_authenticated:
+        if request.user.gender == 'male':
+            greeting = 'Здравствуйте, мой господин!'
+        elif request.user.gender == 'female':
+            greeting = 'Здравствуйте, моя госпожа!'
+    return render(request, 'index.html', {'greeting': greeting})
 
 
 def registration(request):
