@@ -1,4 +1,5 @@
 from django.contrib.auth import login
+from django.db.models import Model
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.views import LoginView
 from django.urls import reverse, reverse_lazy
@@ -11,7 +12,7 @@ from .models import *
 # Create your views here.
 
 def index(request):
-    app_last = Aplication.objects.order_by('-date').filter(status='done')[:4]
+    app_last = Aplication.objects.order_by('-date').filter(status='new')[:4]
     app_haired = Aplication.objects.filter(status='haired').count()
     greeting = ''
     if request.user.is_authenticated:
@@ -20,7 +21,7 @@ def index(request):
         elif request.user.gender == 'female':
             greeting = 'Здравствуйте, моя госпожа!'
 
-    return render(request, 'index.html', {'greeting': greeting})
+    return render(request, 'main.html', context={'app_last': app_last, 'app_haired': app_haired, 'greeting': greeting})
 
 
 def profile(request, status):
