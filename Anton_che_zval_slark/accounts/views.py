@@ -71,3 +71,11 @@ class CreateApplication(CreateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
+
+
+
+def delete_category(request, id):
+    request_obj = Category.objects.get(id=id)
+    if request.method == 'POST':
+        request_obj.delete()
+        return redirect(reverse('category'))

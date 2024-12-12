@@ -13,4 +13,5 @@ urlpatterns = [
     path('profile/<str:status>', app_filter, name='app_filter'),
     path('app_add/', CreateApplication.as_view(), name='app_add'),
     path('delete/<int:request_id>', delete_request, name='delete_request'),
+
 ]

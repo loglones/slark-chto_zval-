@@ -48,3 +48,4 @@ class AddAplForm(forms.ModelForm):
         model = Aplication
         fields = ('name', 'description', 'Category', 'photo_file')
         enctype = "multipart/form-data"
+
