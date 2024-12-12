@@ -15,6 +15,7 @@
         <ul style="list-style-type: none; display: flex; flex-direction: column;">
             <a href="{% url 'home' %}" class="btn btn-outline-dark"><li>Главная</li></a>
             {% if user.is_authenticated %}
+            <a href="{% url 'profile' 'all' %}" class="btn btn-outline-dark"><li>Профиль</li></a>
             <a href="{% url 'logout' %}" class="btn btn-outline-dark"><li>Выйти</li></a>
             {% else %}
             <a href="{% url 'registration' %}" class="btn btn-outline-dark"><li>Регистрация</li></a>

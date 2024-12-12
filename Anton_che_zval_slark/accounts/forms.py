@@ -29,8 +29,6 @@ class Reg_Form(forms.ModelForm):
         return name
 
 
-
-
     def clean_username(self):
         username = self.cleaned_data['username']
         if not re.match(r'^[A-z-]+$', username):
@@ -39,3 +37,9 @@ class Reg_Form(forms.ModelForm):
             self.add_error('username', 'Пользователь с таким логином уже существует.')
         return username
 
+STATUS_CHOISE = [
+    ('new', 'Новая'),
+    ('haired', 'Принято в работу'),
+    ('done', 'Выполнено'),
+    ('all', 'Все заявки')
+]

@@ -1,0 +1,30 @@
+{% extends "index.html" %}
+
+
+{% load thumbnail %}
+{% load static %}
+{% load bootstrap4 %}
+
+{% block content %}
+{% if query %}
+<ul class="list-unstyled">
+   {% for fk in query %}
+   <li class="media my-5 p-3 border">
+       <a href="{{ url }}{{ all }}">
+           {% if query.image %}
+           <img class="mr-3" src="{% thumbnail query.image 'default' %}">
+           {% else %}
+           <img class="mr-3" src="{% static 'main/empty.jpg' %}">
+           {% endif %}
+       </a>
+       <div class="media-body">
+           <h3><a href="{{ url }}{{ all }}">{{ query.title }}</a></h3>
+           <p class="text-right font-weight-bold">{{ query.summary }}</p>
+           <p class="text-right font-italic">{{ query.category }}</p>
+       </div>
+   </li>
+   {% endfor %}
+</ul>
+{% bootstrap_pagination page url=keyword %}
+{% endif %}
+{% endblock %}
