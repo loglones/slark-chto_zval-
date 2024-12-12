@@ -28,7 +28,9 @@
             {% if i.photo_file2 and i.photo_file2.url %}
             <div style="margin-bottom: 15px;"><p>Фото готовой заявки</p><img style="max-width: 650px;" src="{{ i.photo_file2.url }}" alt='фото готовой заявки'></div>
             {% endif %}
+            {% if user.is_superuser %}
             <button type="submit" class="btn btn-danger" id="btn_{{i.id}}" onclick="Btn('{{ i.id }}')">Удалить заявку</button>
+            {% endif %}
             <form action="{% url 'delete_request' i.id %}" method="POST" id="delete_{{i.id}}" style="display: none">
                 {% csrf_token %}
                 <button type="submit" class="btn btn-danger">Подтвердить удаление</button>

@@ -43,3 +43,8 @@ STATUS_CHOISE = [
     ('done', 'Выполнено'),
     ('all', 'Все заявки')
 ]
+class AddAplForm(forms.ModelForm):
+    class Meta:
+        model = Aplication
+        fields = ('name', 'description', 'Category', 'photo_file')
+        enctype = "multipart/form-data"
