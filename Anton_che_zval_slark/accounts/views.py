@@ -69,9 +69,28 @@ class CreateApplication(CreateView):
     template_name = 'aplication_add.html'
     success_url = '/profile/all'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if self.request.POST:
+            context['image_formset'] = ApplicationImageFormSet(self.request.POST, self.request.FILES)
+        else:
+            context['image_formset'] = ApplicationImageFormSet(queryset=ApplicationImage.objects.none())
+        return context
+
     def form_valid(self, form):
-        form.instance.user = self.request.user
-        return super().form_valid(form)
+        context = self.get_context_data()
+        image_formset = context['image_formset']
+        if form.is_valid() and image_formset.is_valid():
+            application = form.save(commit=False)
+            application.user = self.request.user
+            application.save()
+            for image_form in image_formset:
+                image = image_form.save(commit=False)
+                image.application = application
+                image.save()
+            return super().form_valid(form)
+        else:
+            return self.form_invalid(form)
 
 class AppAdminHandle(UpdateView):
     model = Aplication

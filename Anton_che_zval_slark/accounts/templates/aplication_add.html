@@ -5,9 +5,15 @@
 
 {% block content %}
     <h3>Заполните заявку</h3>
-        <form method="post" action="{% url 'app_add' %}" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <input type="submit" value="Отправить заявку" class="btn btn-outline-dark">
-        </form>
+        <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    {{ image_formset.management_form }}
+    {% for form in image_formset %}
+        {{ form.as_p }}
+    {% endfor %}
+
+    <button type="submit">Создать заявку</button>
+</form>
 {% endblock %}
