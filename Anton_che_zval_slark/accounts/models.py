@@ -32,6 +32,12 @@ class Aplication(models.Model):
                                  on_delete=models.CASCADE)
     photo_file = models.ImageField(verbose_name='Фото', upload_to='photo', blank=False,
                                    validators=[FileExtensionValidator(allowed_extensions=['png', 'jpg', 'jpeg', 'bmp'])])
+    # photo_file2 = models.ImageField(verbose_name='Фото', upload_to='photo',blank=True,
+    #                                validators=[
+    #                                    FileExtensionValidator(allowed_extensions=['png', 'jpg', 'jpeg', 'bmp'])])
+    # photo_file3 = models.ImageField(verbose_name='Фото', upload_to='photo',blank=True,
+    #                                validators=[
+    #                                    FileExtensionValidator(allowed_extensions=['png', 'jpg', 'jpeg', 'bmp'])])
     date = models.DateTimeField(verbose_name='Дата заявки', auto_now_add=True)
     status = models.CharField(max_length=250, verbose_name='Статус', choices=[
         ('new', 'Новая'),

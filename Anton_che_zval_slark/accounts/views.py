@@ -73,10 +73,44 @@ class CreateApplication(CreateView):
         form.instance.user = self.request.user
         return super().form_valid(form)
 
+class AppAdminHandle(UpdateView):
+    model = Aplication
+    form_class = AppListHandleForm
+    success_url = '/app_list/'
+    template_name = 'app_handle.html'
 
+    def get_object(self):
+        post_id = self.kwargs.get('id')
+        obj = get_object_or_404(Aplication, id=post_id)
+        return obj
 
 def delete_category(request, id):
     request_obj = Category.objects.get(id=id)
     if request.method == 'POST':
         request_obj.delete()
         return redirect(reverse('category'))
+
+def category_view(request):
+    cat_list = Category.objects.all()
+    if request.method == 'POST':
+        form = CategoryList(request.POST)
+        if form.is_valid():
+            Category.objects.create(**form.cleaned_data)
+    else:
+        form = CategoryList()
+    return render(request, 'cat_list.html', context={'form': form, 'cat_list': cat_list})
+def admin_app(request):
+    if (request.method == 'POST'):
+        form = AppListFormFilter(request.POST)
+        if form.is_valid():
+            status = form.cleaned_data['status']
+            if status != 'all':
+                queryset = Aplication.objects.filter(status=status).order_by('-date')
+            else:
+                form = AppListFormFilter()
+                queryset = Aplication.objects.order_by('-date')
+    else:
+        form = AppListFormFilter()
+        queryset = Aplication.objects.order_by('-date')
+
+    return render(request, 'app_list.html', context={'form': form, 'queryset': queryset})
