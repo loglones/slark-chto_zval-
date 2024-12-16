@@ -8,7 +8,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LogoutView
 from .forms import *
 from .models import *
-
+from django.shortcuts import render, redirect
+from .forms import AddAplForm
 # Create your views here.
 
 def index(request):
@@ -114,3 +115,14 @@ def admin_app(request):
         queryset = Aplication.objects.order_by('-date')
 
     return render(request, 'app_list.html', context={'form': form, 'queryset': queryset})
+
+
+def create_application(request):
+    if request.method == 'POST':
+        form = AddAplForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('some_view_name')
+    else:
+        form = AddAplForm()
+    return render(request, 'aplication_add.html', {'form': form})

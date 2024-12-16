@@ -26,7 +26,19 @@
             <p>Статус: {{ i.get_status_display }}</p>
             <div style="margin-bottom: 15px;"><p>Фото заявки</p><img style="max-width: 650px;" src="{{ i.photo_file.url }}" alt='фото'></div>
             {% if i.photo_file2 and i.photo_file2.url %}
-            <div style="margin-bottom: 15px;"><p>Фото готовой заявки</p><img style="max-width: 650px;" src="{{ i.photo_file2.url }}" alt='фото готовой заявки'></div>
+    <div style="margin-bottom: 15px;">
+        <p>Фото 2 заявки</p>
+        <img style="max-width: 650px;" src="{{ i.photo_file2.url }}" alt='фото 2'>
+    </div>
+{% endif %}
+{% if i.photo_file3 and i.photo_file3.url %}
+    <div style="margin-bottom: 15px;">
+        <p>Фото 3 заявки</p>
+        <img style="max-width: 650px;" src="{{ i.photo_file3.url }}" alt='фото 3'>
+    </div>
+{% endif %}
+            {% if i.photo_fileReady and i.photo_fileReady.url %}
+            <div style="margin-bottom: 15px;"><p>Фото готовой заявки</p><img style="max-width: 650px;" src="{{ i.photo_fileReady.url }}" alt='фото готовой заявки'></div>
             {% endif %}
             {% if user.is_superuser %}
             <button type="submit" class="btn btn-danger" id="btn_{{i.id}}" onclick="Btn('{{ i.id }}')">Удалить заявку</button>

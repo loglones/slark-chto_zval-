@@ -30,14 +30,17 @@ class Aplication(models.Model):
     description = models.CharField(max_length=250, verbose_name='Описание', null=False, blank=False)
     Category = models.ForeignKey(Category, verbose_name='Категория', blank=False, null=False,
                                  on_delete=models.CASCADE)
-    photo_file = models.ImageField(verbose_name='Фото', upload_to='photo', blank=False,
-                                   validators=[FileExtensionValidator(allowed_extensions=['png', 'jpg', 'jpeg', 'bmp'])])
-    # photo_file2 = models.ImageField(verbose_name='Фото', upload_to='photo',blank=True,
-    #                                validators=[
-    #                                    FileExtensionValidator(allowed_extensions=['png', 'jpg', 'jpeg', 'bmp'])])
-    # photo_file3 = models.ImageField(verbose_name='Фото', upload_to='photo',blank=True,
-    #                                validators=[
-    #                                    FileExtensionValidator(allowed_extensions=['png', 'jpg', 'jpeg', 'bmp'])])
+    photo_file = models.ImageField(verbose_name='Фото 1', upload_to='photo', blank=True,
+                                   validators=[
+                                       FileExtensionValidator(allowed_extensions=['png', 'jpg', 'jpeg', 'bmp'])])
+
+    photo_file2 = models.ImageField(verbose_name='Фото 2', upload_to='photo', blank=True,
+                                    validators=[
+                                        FileExtensionValidator(allowed_extensions=['png', 'jpg', 'jpeg', 'bmp'])])
+
+    photo_file3 = models.ImageField(verbose_name='Фото 3', upload_to='photo', blank=True,
+                                    validators=[
+                                        FileExtensionValidator(allowed_extensions=['png', 'jpg', 'jpeg', 'bmp'])])
     date = models.DateTimeField(verbose_name='Дата заявки', auto_now_add=True)
     status = models.CharField(max_length=250, verbose_name='Статус', choices=[
         ('new', 'Новая'),
@@ -45,7 +48,7 @@ class Aplication(models.Model):
         ('haired', 'Принято в работу')
     ], default='new')
     comment = models.CharField(max_length=250, verbose_name='Комментарий', blank=True)
-    photo_file2 = models.ImageField(verbose_name='Фото готовой заявки', upload_to='photo', blank=False,
+    photo_fileReady = models.ImageField(verbose_name='Фото готовой заявки', upload_to='photo', blank=True,
                                     validators=[
                                         FileExtensionValidator(allowed_extensions=['png', 'jpg', 'jpeg', 'bmp'])])
 

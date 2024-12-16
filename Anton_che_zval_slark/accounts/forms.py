@@ -52,7 +52,7 @@ STATUS_CHOISE = [
 class AddAplForm(forms.ModelForm):
     class Meta:
         model = Aplication
-        fields = ['name', 'description', 'Category', 'photo_file']
+        fields = ['name', 'description', 'Category', 'photo_file', 'photo_file2', 'photo_file3']
         enctype = "multipart/form-data"
 
 
@@ -75,23 +75,23 @@ class AppListHandleForm(forms.ModelForm):
     status = forms.ChoiceField(choices=[('done', 'Выполнено'), ('haired', 'Принято в работу')],
                                label='Изменить статус на ')
     Category = forms.ModelChoiceField(queryset=Category.objects.all(), disabled=True, label='Категория')
-    photo_file2 = forms.ImageField(disabled=False, label='Фото готовой заявки', required=True)
+    photo_fileReady = forms.ImageField(disabled=False, label='Фото готовой заявки', required=True)
     comment = forms.CharField(disabled=False, label='Комментарий', required=True)
 
     def clean(self):
         status = self.cleaned_data.get('status')
         comment = self.cleaned_data.get('comment')
-        photo_file2 = self.cleaned_data.get('photo_file2')
+        photo_fileReady = self.cleaned_data.get('photo_fileReady')
         if self.instance.status != 'new':
             raise forms.ValidationError({'status': 'Статус можно сменить только у новой заявки'})
         if status == 'new' and comment:
             raise forms.ValidationError({'comment': 'К новой заявке нельзя добавить комментарий'})
         if status == 'haired' and not comment:
             raise forms.ValidationError({'comment': 'Нужно указать комментарий для заявки принятой в работу'})
-        if status == 'done' and not photo_file2:
-            raise forms.ValidationError({'photo_file2': 'Нужно добавить фотографию для выполненой заявки'})
+        if status == 'done' and not photo_fileReady:
+            raise forms.ValidationError({'photo_fileReady': 'Нужно добавить фотографию для выполненой заявки'})
 
     class Meta:
         model = Aplication
-        fields = ['name', 'description', 'photo_file', 'status', 'Category', 'photo_file2', 'comment']
+        fields = ['name', 'description', 'photo_file', 'status', 'Category', 'photo_fileReady', 'comment','photo_file2', 'photo_file3']
         enctype = "multipart/form-data"
