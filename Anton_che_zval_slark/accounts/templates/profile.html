@@ -24,11 +24,7 @@
             <p>Описание: {{ i.description }}</p>
             <p>Категория: {{ i.Category }}</p>
             <p>Статус: {{ i.get_status_display }}</p>
-            <div style="margin-bottom: 15px;"><p>Фото заявки</p>{% if i.photo_file %}
-        <img style="max-width: 650px;" src="{{ i.photo_file.url }}" alt='фото'>
-    {% else %}
-        <p>Фото не загружено</p>
-    {% endif %}</div>
+            <div style="margin-bottom: 15px;"><p>Фото заявки</p><img style="max-width: 650px;" src="{{ i.photo_file.url }}" alt='фото'></div>
             {% if i.photo_file2 and i.photo_file2.url %}
             <div style="margin-bottom: 15px;"><p>Фото готовой заявки</p><img style="max-width: 650px;" src="{{ i.photo_file2.url }}" alt='фото готовой заявки'></div>
             {% endif %}

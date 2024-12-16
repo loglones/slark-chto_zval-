@@ -2,7 +2,7 @@ from django import forms
 from .models import *
 from django.core.exceptions import ValidationError
 import re
-from .models import Aplication, ApplicationImage
+from .models import Aplication
 
 class Reg_Form(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput(), label='Введите пороль')
@@ -52,16 +52,11 @@ STATUS_CHOISE = [
 class AddAplForm(forms.ModelForm):
     class Meta:
         model = Aplication
-        fields = ['name', 'description', 'Category']
+        fields = ['name', 'description', 'Category', 'photo_file']
         enctype = "multipart/form-data"
 
-class ApplicationImageForm(forms.ModelForm):
-    class Meta:
-        model = ApplicationImage
-        fields = ['image']
-        enctype = "multipart/form-data"
 
-ApplicationImageFormSet = forms.modelformset_factory(ApplicationImage, form=ApplicationImageForm, extra=3, max_num=3)
+
 
 class CategoryList(forms.ModelForm):
     name = forms.CharField(max_length=250, label='Новая категория', required=True)

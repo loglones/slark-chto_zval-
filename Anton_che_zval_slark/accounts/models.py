@@ -52,6 +52,3 @@ class Aplication(models.Model):
     def __str__(self):
         return f"{self.name} | {self.Category} | {self.get_status_display()}"
 
-class ApplicationImage(models.Model):
-    application = models.ForeignKey('Aplication', on_delete=models.CASCADE, related_name='images')
-    image = models.ImageField(upload_to='application_images/')
