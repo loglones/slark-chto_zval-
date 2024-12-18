@@ -29,11 +29,11 @@ def profile(request, status):
     if status == 'all':
         my_app_list = Aplication.objects.filter(user=request.user.pk).order_by('-date')
     else:
-        my_app_list = Aplication.objects.filter(status=status).order_by('-date')
+        my_app_list = Aplication.objects.filter(user=request.user , status=status).order_by('-date')
     return render(request, 'profile.html', context={'my_app_list': my_app_list})
 
 def app_filter(request, status):
-    app_list = Aplication.objects.filter(status=status).order_by('-date')
+    app_list = Aplication.objects.filter(user=request.user , status=status).order_by('-date')
     return render(request, 'profile.html', context={'app_list': app_list, 'status': status})
 
 def delete_request(request, request_id):

@@ -40,6 +40,12 @@
             {% if i.photo_fileReady and i.photo_fileReady.url %}
             <div style="margin-bottom: 15px;"><p>Фото готовой заявки</p><img style="max-width: 650px;" src="{{ i.photo_fileReady.url }}" alt='фото готовой заявки'></div>
             {% endif %}
+            {% if i.photo_fileReady2 and i.photo_fileReady2.url %}
+            <div style="margin-bottom: 15px;"><p>Фото готовой заявки2</p><img style="max-width: 650px;" src="{{ i.photo_fileReady.url }}" alt='фото готовой заявки'></div>
+            {% endif %}
+            {% if i.photo_fileReady3 and i.photo_fileReady3.url %}
+            <div style="margin-bottom: 15px;"><p>Фото готовой заявки3</p><img style="max-width: 650px;" src="{{ i.photo_fileReady.url }}" alt='фото готовой заявки'></div>
+            {% endif %}
             {% if user.is_superuser %}
             <button type="submit" class="btn btn-danger" id="btn_{{i.id}}" onclick="Btn('{{ i.id }}')">Удалить заявку</button>
             {% endif %}

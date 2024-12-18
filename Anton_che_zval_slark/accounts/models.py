@@ -19,7 +19,7 @@ class User(AbstractUser):
         return self.username
 
 class Category(models.Model):
-    name = models.CharField(max_length=250, verbose_name='Название', blank=False)
+    name = models.CharField(max_length=250, verbose_name='Название', unique=True, blank=False)
 
     def __str__(self):
         return self.name
@@ -51,6 +51,13 @@ class Aplication(models.Model):
     photo_fileReady = models.ImageField(verbose_name='Фото готовой заявки', upload_to='photo', blank=True,
                                     validators=[
                                         FileExtensionValidator(allowed_extensions=['png', 'jpg', 'jpeg', 'bmp'])])
+    photo_fileReady2 = models.ImageField(verbose_name='Фото готовой заявки', upload_to='photo', blank=True,
+                                        validators=[
+                                            FileExtensionValidator(allowed_extensions=['png', 'jpg', 'jpeg', 'bmp'])])
+    photo_fileReady3 = models.ImageField(verbose_name='Фото готовой заявки', upload_to='photo', blank=True,
+                                        validators=[
+                                            FileExtensionValidator(allowed_extensions=['png', 'jpg', 'jpeg', 'bmp'])])
+
 
     def __str__(self):
         return f"{self.name} | {self.Category} | {self.get_status_display()}"

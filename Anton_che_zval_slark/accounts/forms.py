@@ -1,3 +1,5 @@
+from enum import unique
+
 from django import forms
 from .models import *
 from django.core.exceptions import ValidationError
@@ -59,7 +61,7 @@ class AddAplForm(forms.ModelForm):
 
 
 class CategoryList(forms.ModelForm):
-    name = forms.CharField(max_length=250, label='Новая категория', required=True)
+    name = forms.CharField(max_length=250, label='Новая категория',  required=True)
 
     class Meta:
         model = Category
@@ -75,8 +77,11 @@ class AppListHandleForm(forms.ModelForm):
     status = forms.ChoiceField(choices=[('done', 'Выполнено'), ('haired', 'Принято в работу')],
                                label='Изменить статус на ')
     Category = forms.ModelChoiceField(queryset=Category.objects.all(), disabled=True, label='Категория')
-    photo_fileReady = forms.ImageField(disabled=False, label='Фото готовой заявки', required=True)
-    comment = forms.CharField(disabled=False, label='Комментарий', required=True)
+    comment = forms.CharField(disabled=False, label='Комментарий', required=False)
+    photo_fileReady = forms.ImageField(disabled=False, label='Фото готовой заявки', required=False)
+    photo_fileReady2 = forms.ImageField(disabled=False, label='Фото готовой заявки2', required=False)
+    photo_fileReady3 = forms.ImageField(disabled=False, label='Фото готовой заявки3', required=False)
+
 
     def clean(self):
         status = self.cleaned_data.get('status')
@@ -86,12 +91,13 @@ class AppListHandleForm(forms.ModelForm):
             raise forms.ValidationError({'status': 'Статус можно сменить только у новой заявки'})
         if status == 'new' and comment:
             raise forms.ValidationError({'comment': 'К новой заявке нельзя добавить комментарий'})
+
         if status == 'haired' and not comment:
-            raise forms.ValidationError({'comment': 'Нужно указать комментарий для заявки принятой в работу'})
-        if status == 'done' and not photo_fileReady:
-            raise forms.ValidationError({'photo_fileReady': 'Нужно добавить фотографию для выполненой заявки'})
+                self.add_error('comment', 'Нужно указать комментарий для заявки, принятой в работу')
+        elif status == 'done' and not photo_fileReady:
+                self.add_error('photo_fileReady', 'Нужно добавить фотографию для выполненной заявки')
 
     class Meta:
         model = Aplication
-        fields = ['name', 'description', 'photo_file', 'status', 'Category', 'photo_fileReady', 'comment','photo_file2', 'photo_file3']
+        fields = ['name', 'description', 'photo_file', 'status', 'Category', 'photo_fileReady','photo_fileReady2','photo_fileReady3', 'comment']
         enctype = "multipart/form-data"
